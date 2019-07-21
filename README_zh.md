@@ -133,9 +133,9 @@ npm install exceljs
   <li><a href="#release-history">发布历史</a></li>
 </ul>
 
-# 接口 {#interface}
+# [接口](#interface)
 
-## 导入 {#importing}
+## [导入](#importing)
 
 默认导出是带有 Promise polyfill 转换的 ES5 版本 - 因为这会提供最高的兼容性。
 
@@ -151,13 +151,13 @@ const Excel = require('exceljs/modern.nodejs');
 import Excel from 'exceljs/modern.browser';
 ```
 
-## 创建工作簿 {#create-a-workbook}
+## [创建工作簿](#create-a-workbook)
 
 ```javascript
 var workbook = new Excel.Workbook();
 ```
 
-## 设置工作簿属性 {#set-workbook-properties}
+## [设置工作簿属性](#set-workbook-properties)
 
 ```javascript
 workbook.creator = 'Me';
@@ -172,7 +172,7 @@ workbook.lastPrinted = new Date(2016, 9, 27);
 workbook.properties.date1904 = true;
 ```
 
-## 工作簿视图 {#workbook-views}
+## [工作簿视图](#workbook-views)
 
 “工作簿”视图控制Excel在查看工作簿时打开多少个单独的窗口。
 
@@ -185,7 +185,7 @@ workbook.views = [
 ]
 ```
 
-## 添加工作表 {#add-a-worksheet}
+## [添加工作表](#add-a-worksheet)
 
 ```javascript
 var sheet = workbook.addWorksheet('My Sheet');
@@ -220,7 +220,7 @@ var sheet = workbook.addWorksheet('My Sheet');
 workbook.removeWorksheet(sheet.id)
 ```
 
-## 访问工作表 {#access-worksheets}
+## [访问工作表](#access-worksheets)
 ```javascript
 // 迭代所有sheet
 // 注意：workbook.worksheets.forEach仍然可以工作，但这个方式更好
@@ -235,7 +235,7 @@ var worksheet = workbook.getWorksheet('My Sheet');
 var worksheet = workbook.getWorksheet(1);
 ```
 
-## 工作表状态 {#worksheet-state}
+## [工作表状态](#worksheet-state)
 
 ```javascript
 // 使工作表可见
@@ -248,7 +248,7 @@ worksheet.state = 'hidden';
 worksheet.state = 'veryHidden';
 ```
 
-## 工作表属性 {#worksheet-properties}
+## [工作表属性](#worksheet-properties)
 
 工作表支持属性桶，以允许控制工作表的某些功能。
 
@@ -286,7 +286,7 @@ worksheet.properties.defaultRowHeight = 15;
 | actualColumnCount | 具有值的列数的计数。 |
 
 
-## 页面设置 {#page-setup}
+## [页面设置](#page-setup)
 
 所有可能影响工作表打印的属性都保存在工作表的pageSetup对象中。
 
@@ -360,7 +360,7 @@ worksheet.pageSetup.printTitlesColumn = 'A:C';
 | 日本双明信片旋转 |  82       |
 | 16K 197x273 mm                |  119      |
 
-## 工作表视图 {#worksheet-views}
+## [工作表视图](#worksheet-views)
 
 工作表现在支持一个视图列表，用于控制Excel如何显示工作表：
 
@@ -381,7 +381,7 @@ worksheet.pageSetup.printTitlesColumn = 'A:C';
 | zoomScaleNormal   | 100       | 正常缩放视图 |
 | style             | undefined | 演示文稿样式 -  pageBreakPreview或pageLayout之一。注意pageLayout与冻结视图不兼容 |
 
-### 冰冻视图 {#frozen-views}
+### [冰冻视图](#frozen-views)
 
 冻结视图支持以下扩展属性：
 
@@ -397,7 +397,7 @@ worksheet.views = [
 ];
 ```
 
-### 拆分视图 {#split-views}
+### [拆分视图](#split-views)
 
 拆分视图支持以下扩展属性：
 
@@ -414,7 +414,7 @@ worksheet.views = [
 ];
 ```
 
-## 自动过滤器 {#auto-filters}
+## [自动过滤器](#auto-filters)
 
 可以将自动过滤器应用于工作表。
 
@@ -454,7 +454,7 @@ worksheet.autoFilter = {
 }
 ```
 
-## 列 {#columns}
+## [列](#columns)
 
 ```javascript
 // 添加列标题并定义列键和宽度
@@ -525,7 +525,7 @@ worksheet.spliceColumns(3, 1, newCol3Values, newCol4Values);
 
 ```
 
-## 行 {#rows}
+## [行](#rows)
 
 ```javascript
 // 使用列键在最后一行之后按键值添加几行
@@ -649,7 +649,7 @@ var rowSize = row.cellCount;
 var numValues = row.actualCellCount;
 ```
 
-## 处理单个单元格 {#handling-individual-cells}
+## [处理单个单元格](#handling-individual-cells)
 
 ```javascript
 var cell = worksheet.getCell('C3');
@@ -668,7 +668,7 @@ var html = '<div>' + cell.html + '</div>';
 
 ```
 
-## 合并单元格 {#merged-cells}
+## [合并单元格](#merged-cells)
 
 ```javascript
 // 合并一系列单元格
@@ -694,7 +694,7 @@ worksheet.mergeCells('G10', 'H11');
 worksheet.mergeCells(10,11,12,13); // 上，左，下，右
 ```
 
-## 定义的名称 {#defined-names}
+## [定义的名称](#defined-names)
 
 单个单元格（或多组单元格）可以为其分配名称。
  名称可用于公式和数据验证（可能更多）。
@@ -713,7 +713,7 @@ worksheet.getCell('A1').removeName('thing1');
 expect(worksheet.getCell('A1').names).to.have.members(['thing2']);
 ```
 
-## 数据验证 {#data-validations}
+## [数据验证](#data-validations)
 
 单元格可以定义哪些值有效，并向用户提供提示以帮助指导它们。
 
@@ -800,7 +800,7 @@ worksheet.getCell('A1').dataValidation = {
 };
 ```
 
-## 单元格评论 {#cell-comments}
+## [单元格评论](#cell-comments)
 
 将旧样式评论添加到单元格
 
@@ -823,7 +823,7 @@ ws.getCell('B1').note = {
 };
 ```
 
-## 样式 {#styles}
+## [样式](#styles)
 
 单元格，行和列各自支持一组丰富的样式和格式，这些样式和格式会影响单元格的显示方式。
 
@@ -866,7 +866,7 @@ ws.getRow(2).font = { name: 'Comic Sans MS', family: 4, size: 16, underline: 'do
  如果希望样式对象是独立的，则需要在分配它们之前克隆它们。
  此外，默认情况下，如果从文件（或流）读取文档（如果电子表格实体共享相似的样式），则它们也将引用相同的样式对象。
  
-### 数字格式 {#number-formats}
+### [数字格式](#number-formats)
 
 ```javascript
 // 显示值为 '1 3/5'
@@ -878,7 +878,7 @@ ws.getCell('B1').value = 0.016;
 ws.getCell('B1').numFmt = '0.00%';
 ```
 
-### 字体 {#fonts}
+### [字体](#fonts)
 
 ```javascript
 
@@ -929,7 +929,7 @@ font.size = 20; // Cell A3现在的字体大小为20！
 | outline       | Font outline | true, false |
 | vertAlign     | Vertical align | 'superscript', 'subscript'
 
-### 对齐方式 {#alignment}
+### [对齐方式](#alignment)
 
 ```javascript
 // set cell alignment to top-left, middle-center, bottom-right
@@ -962,7 +962,7 @@ ws.getCell('H1').alignment = { textRotation: 'vertical' };
 | distributed      |             |          |         |              |              |
 
 
-### 边框 {#borders}
+### [边框](#borders)
 
 ```javascript
 // 在A1周围设置单个细边框
@@ -1002,7 +1002,7 @@ ws.getCell('A5').border = {
 * double
 * thick
 
-### 填充 {#fills}
+### [填充](#fills)
 
 ```javascript
 // fill A1 with red darkVertical stripes
@@ -1045,7 +1045,7 @@ ws.getCell('A2').fill = {
 };
 ```
 
-#### 图案填充 {#pattern-fills}
+#### [图案填充](#pattern-fills)
 
 | Property | Required | 描述 |
 | -------- | -------- | ----------- |
@@ -1076,7 +1076,7 @@ ws.getCell('A2').fill = {
 * lightGrid
 * lightTrellis
 
-#### 渐变填充 {#gradient-fills}
+#### [渐变填充](#gradient-fills)
 
 | Property | Required | 描述 |
 | -------- | -------- | ----------- |
@@ -1119,7 +1119,7 @@ expect(ws.getCell('A1').type).to.equal(Excel.ValueType.RichText);
 
 ```
 
-## 大纲级别 {#outline-levels}
+## [大纲级别](#outline-levels)
 
 Excel支持概述;其中可以展开或折叠行或列，具体取决于用户希望查看的详细程度。
 
@@ -1167,7 +1167,7 @@ worksheet.properties.outlineProperties = {
 };
 ```
 
-## 图片 {#images}
+## [图片](#images)
 
 将图像添加到工作表需要两个步骤。
 首先，通过addImage（）函数将图像添加到工作簿，该函数也将返回imageId值。
@@ -1175,7 +1175,7 @@ worksheet.properties.outlineProperties = {
 
 注意：从此版本开始，不支持调整或转换图像。
 
-### 将图像添加到工作簿 {#add-image-to-workbook}
+### [将图像添加到工作簿](#add-image-to-workbook)
 
 Workbook.addImage函数支持按文件名或缓冲区添加图像。
 请注意，在这两种情况下，都必须指定扩展名。
@@ -1202,7 +1202,7 @@ var imageId2 = workbook.addImage({
 });
 ```
 
-### 将图像背景添加到工作表 {#add-image-background-to-worksheet}
+### [将图像背景添加到工作表](#add-image-background-to-worksheet)
 
 使用Workbook.addImage中的图像ID，可以使用addBackgroundImage函数设置工作表的背景
 
@@ -1211,7 +1211,7 @@ var imageId2 = workbook.addImage({
 worksheet.addBackgroundImage(imageId1);
 ```
 
-### 在范围内添加图像 {#add-image-over-a-range}
+### [在范围内添加图像](#add-image-over-a-range)
 
 使用Workbook.addImage中的图像ID，可以在工作表中嵌入图像以覆盖范围。
 从该范围计算的坐标将覆盖从第一个单元格的左上角到第二个单元格的右下角。
@@ -1251,7 +1251,7 @@ ws.addImage(imageId, {
 });
 ```
 
-### 将图像添加到单元格 {#add-image-to-a-cell}
+### [将图像添加到单元格](#add-image-to-a-cell)
 
 You can add an image to a cell and then define its width and height in pixels at 96dpi.
 
